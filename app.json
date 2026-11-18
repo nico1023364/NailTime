@@ -1,25 +1,103 @@
 {
   "expo": {
-    "name": "nailtime",
+    "name": "NailTime",
     "slug": "nailtime",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#FFF9FB",
+    "scheme": "nailtime",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nailtime.app",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "NailTime necesita acceso a tus fotos para subir diseños al portafolio o como referencia.",
+        "NSCameraUsageDescription": "NailTime usa la cámara para fotografiar diseños de uñas."
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#E2568B",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.nailtime.app"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/favicon.png",
+      "themeColor": "#E2568B",
+      "backgroundColor": "#FFF9FB"
+    },
+    "plugins": [
+      [
+        "expo-status-bar",
+        {
+          "style": "dark"
+        }
+      ],
+      "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraProguardRules": "-keep class * extends androidx.room.RoomDatabase { <init>(); }\n-keep class * extends androidx.work.InputMerger { <init>(); }"
+          }
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#E2568B",
+          "defaultChannel": "citas"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "NailTime usa tu ubicación para mostrar la ruta al estudio y registrar direcciones de servicios a domicilio."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "NailTime necesita acceso a tus fotos para subir diseños al portafolio o como referencia.",
+          "cameraPermission": "NailTime usa la cámara para fotografiar diseños de uñas."
+        }
+      ],
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "NailTime agrega tus citas al calendario del celular."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FFF9FB",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain"
+        }
+      ]
+    ],
+    "extra": {
+      "expo-status-bar": {
+        "style": "dark"
+      },
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "5911c8d7-30cd-44ce-b4c2-681f022d3110"
+      }
     }
   }
 }
